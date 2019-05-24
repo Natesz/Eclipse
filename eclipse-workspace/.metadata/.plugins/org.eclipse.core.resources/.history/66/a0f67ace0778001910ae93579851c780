@@ -1,0 +1,53 @@
+package com.chess.engine.board;
+
+public abstract class Tile {
+
+	int tileCoordinate;
+	
+	public Tile(int tileCoordinate) {
+		this.tileCoordinate = tileCoordinate;
+	}
+	
+	public abstract boolean isTyleOccupied();
+	
+	public abstract Piece getPiece();
+	
+	public static final class EmptyTile extends Tile{
+
+		public EmptyTile(int coordinate) {
+			super(coordinate);
+		}
+		
+		@Override
+		public boolean isTyleOccupied() {
+			return false;
+		}
+		
+		@Override
+		public Piece getPiece() {
+			return null;
+		}
+		
+	}
+	
+	public static final class OccupiedTile extends Tile{
+
+		Piece pieceOnTile;
+		
+		public OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
+			super(tileCoordinate);
+			this.pieceOnTile = pieceOnTile;
+		}
+		
+		@Override
+		public boolean isTyleOccupied() {
+			return true;
+		}
+		
+		@Override
+		public Piece getPiece() {
+			return this.pieceOnTile;
+		}
+		
+	}
+}
